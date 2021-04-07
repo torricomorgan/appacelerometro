@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -5,10 +6,12 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:sensors/sensors.dart';
 
+ //flutter run --no-sound-null-safety
+
 void main()=>runApp(MiApp());
 
 class MiApp extends StatelessWidget {
-  const MiApp({Key? key}) : super(key: key);
+  const MiApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +23,14 @@ class MiApp extends StatelessWidget {
 }
 
 class Inicio extends StatefulWidget {
-  Inicio({Key? key}) : super(key: key);
+  Inicio({Key key}) : super(key: key);
 
   @override
   _InicioState createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
-  List<double>? _accelerometerValues;
+  List<double> _accelerometerValues;
   List<StreamSubscription<dynamic>> _streamSubscriptions = <StreamSubscription<dynamic>>[];
 
   Future<String> sendData(var e) async{
@@ -46,7 +49,7 @@ class _InicioState extends State<Inicio> {
   }
   @override
   Widget build(BuildContext context) {
-    final List<String>? accelerometer = _accelerometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
+    final List<String> accelerometer = _accelerometerValues.map((double v) => v.toStringAsFixed(1)).toList();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
